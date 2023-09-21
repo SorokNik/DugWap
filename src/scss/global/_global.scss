@@ -38,14 +38,6 @@
 	flex-direction: column;
 }
 
-.hide{
-	display: none;
-}
-
-.show{
-	display: block;
-}
-
 html {
 	font-size: .52vw;
 	font-family: 'Raleway', sans-serif;
@@ -80,4 +72,30 @@ h5,
 h6 {
 	margin: 0;
 	padding: 0;
+}
+
+.add-opacity{
+	transition: .3s linear;
+	opacity: 0;
+}
+
+.remove-opacity{
+	transition: .3s linear;
+	opacity: 1;
+}
+
+.hide{
+	display: none;
+}
+
+.show{
+	display: block;
+}
+
+.mini-pic{
+	transform: perspective(100rem) translateZ(-50rem);
+}
+
+.transition-2s{
+	transition: 2s ease;
 }
