@@ -99,3 +99,33 @@ h6 {
 .transition-2s{
 	transition: 2s ease;
 }
+
+
+
+.hide-title{
+	transition: 1s ease;
+	transform: translateX(20rem);
+	opacity: 0;	
+}
+
+.show-title{
+	transition: 1s ease;
+	opacity: 1;	
+}
+
+.translate-new-title{
+	transform: translateX(-20rem);
+}
+
+
+
+.hide-logo{
+	opacity: 0 !important;
+	transition: 1s linear;
+}
+
+.show-logo{
+	opacity: 1 !important;
+	transition: 1s linear;
+}
+

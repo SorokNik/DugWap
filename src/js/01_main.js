@@ -1,27 +1,20 @@
 document.addEventListener('DOMContentLoaded', ()=> {
 
     
-    const   switchersClickBlocker = document.querySelector('.slide__switch-menu:before'),
+    const   switchersClickBlocker = document.querySelector('.slide__switch-menu_click-blocker'),
             switchers = document.querySelectorAll('.slide__service-logo_wrapper');
 
 
-    console.log(switchersClickBlocker);
+    // console.log(switchersClickBlocker);
 
     const slidersDB = {
         pics: {
             wrapperClass: '.slide__pic_wrapper',
             elemClasses: ['slide__pic', 'mini-pic', 'slide__pic-'],
-            content: {
-                1: '',
-                2: '',
-                3: '',
-                4: '',
-                5: ''
-            }
         },
         titles: {
             wrapperClass: '.slide__head-title_wrap',
-            elemClasses: ['slide__head-title', 'slide__head_title-'],
+            elemClasses: ['slide__head-title', 'slide__head_title-', 'add-opacity', 'translate-new-title'],
             content: {
                 1: 'DugWap',
                 2: 'Juddy.biz',
@@ -33,13 +26,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
         logos: {
             wrapperClass: '.slide__head-logo_wrap',
             elemClasses: ['slide__head-logo', 'slide__head-logo-', '--svg__slide-head-logo-'],
-            content: {
-                1: '',
-                2: '',
-                3: '',
-                4: '',
-                5: ''
-            }
         },
         descr: {
             wrapperClass: '.slide__descr_wrapper',
@@ -58,28 +44,33 @@ document.addEventListener('DOMContentLoaded', ()=> {
         }
     };
 
-    let sliderSwitchClickAllowed = true;
 
-    function changeSlide(number, slidesWrapperClass, slideClasses, slideContent, horizontalDirection, slidesWrapperTransitionTime) {
+//===========ФУНКЦИЯ ДЛЯ СОЗДАНИЯ СЛАЙДА С НУЖНЫМИ КЛАССАМИ==========
+
+function createSlide(slideClasses, numberOfSlide, slideContent) {
+    const slide = document.createElement('div');
+            slideClasses.forEach(item => {
+                item[item.length-1] === '-' ? slide.classList.add(`${item+numberOfSlide}`) : slide.classList.add(item)
+            });
+            if(slideContent){slide.innerHTML = slideContent[numberOfSlide];}
+
+            return slide;
+}
+
+// ==========ФУНКЦИЯ СМЕНЫ КАРТИНОК==========
+    function changeSlidePic(number, slidesWrapperClass, slideClasses, slideContent, horizontalDirection, slidesWrapperTransitionTime) {
         const slidersWrapper = document.querySelector(slidesWrapperClass),
               slidersWrapperGap = +window.getComputedStyle(slidersWrapper).gap.slice(0, window.getComputedStyle(slidersWrapper).gap.length - 2);
 
-        if(sliderSwitchClickAllowed){
             const prevSlideItems = slidersWrapper.querySelectorAll(`.${slideClasses[0]}`);
-            switchersClickBlocker.style.display = 'block';
             prevSlideItems.forEach(item => {
                 item.removeAttribute('style');
                 item.classList.add('add-opacity')
             });
 
-            // sliderSwitchClickAllowed = false;
-            const slideItem = document.createElement('div');
-            slideClasses.forEach(item => {
-                item[item.length-1] === '-' ? slideItem.classList.add(`${item+number}`) : slideItem.classList.add(item)
-            });
-            slideItem.innerHTML = slideContent[number];
+            const slideItem = createSlide(slideClasses, number, slideContent);
 
-            horizontalDirection === '-' ? slidersWrapper.append(slideItem) : slidersWrapper.prepend(slideItem);
+            slidersWrapper.append(slideItem)
             
 
             const step = slidersWrapperGap + slideItem.clientWidth;
@@ -101,25 +92,79 @@ document.addEventListener('DOMContentLoaded', ()=> {
                 for(const pic of slideItem){
                         pic.remove();
                 }
-                slidersWrapper.style.transform = 'none';
-                slidersWrapper.style.transition = 'none';
-                
-
-                sliderSwitchClickAllowed = true;
-                switchersClickBlocker.style.display = 'none';
+                slidersWrapper.removeAttribute('style');
             }
 
             if(slideItem.classList.contains('mini-pic')){setTimeout(removeMiniPic, 400)}
             setTimeout(removePrevSlide, slidesWrapperTransitionTime*1000);
-        }
     }
+
+// ==========ФУНКЦИЯ СМЕНЫ ЗАГОЛОВКОВ СЕРВИСОВ==========    
+ 
+    function changeSlideTitle (number, slidesWrapperClass, slideClasses, slideContent, ) {
+
+        const slidersWrapper = document.querySelector(slidesWrapperClass),
+              slideItem = createSlide(slideClasses, number, slideContent);
+
+        slidersWrapper.prepend(slideItem)
+
+        function removePrevSlide () {
+            let slideItem = document.querySelectorAll(`.${slideClasses[0]}`);
+            slideItem = Array(...slideItem);
+            slideItem.shift()
+            for(const title of slideItem){
+                    title.classList.remove('show-title');
+                    title.classList.add('hide-title');
+                    setTimeout(()=>{title.remove()}, 2000)
+            }
+        }
+        setTimeout(()=>{
+            slideItem.classList.remove('translate-new-title')
+            slideItem.classList.add('show-title')
+        }, 1500)
+        removePrevSlide();
+
+    }
+
+// ==========ФУНКЦИЯ СМЕНЫ ЛОГОТИПОВ==========
+
+    function changeSlideLogo (number, slidesWrapperClass, slideClasses) {
+
+        const slidersWrapper = document.querySelector(slidesWrapperClass),
+              slidesItem = createSlide(slideClasses, number);
+
+
+        slidersWrapper.append(slidesItem);
+
+        setTimeout(()=>{slidesItem.classList.add('show-logo')}, 1000)
+
+        function removePrevSlide () {
+            let slideItem = document.querySelectorAll(`.${slideClasses[0]}`);
+            slideItem = Array(...slideItem);
+            slideItem.pop()
+            for(const logo of slideItem){
+                    logo.classList.remove('show-logo');
+                    logo.classList.add('hide-logo');
+                    setTimeout(()=>{logo.remove()}, 1000)
+            }
+        }
+
+        removePrevSlide ();
+
+    }
+
+// ==========ФУНКЦИЯ СМЕНЫ ОПИСАНИЯ СЕРВИСА==========
+
+function changeSlideDescr () {
+    
+}
 
     switchers.forEach((switcher) => {
         switcher.addEventListener('click',function(){
-            changeSlide(+this.getAttribute('data-number'), slidersDB.titles.wrapperClass, slidersDB.titles.elemClasses, slidersDB.titles.content, '+', 4);
-            changeSlide(+this.getAttribute('data-number'), slidersDB.pics.wrapperClass, slidersDB.pics.elemClasses, slidersDB.pics.content, '-', 2);
-            // console.log(slidersDB.titles.content[2])
-            
+            const slideNumber = +this.getAttribute('data-number');
+            changeSlidePic(slideNumber, slidersDB.pics.wrapperClass, slidersDB.pics.elemClasses, slidersDB.pics.content, '-', 2);
+            changeSlideTitle(slideNumber, slidersDB.titles.wrapperClass, slidersDB.titles.elemClasses, slidersDB.titles.content);
+            changeSlideLogo(slideNumber, slidersDB.logos.wrapperClass, slidersDB.logos.elemClasses);
         });
     });
 
