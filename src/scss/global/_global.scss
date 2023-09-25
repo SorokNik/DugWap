@@ -129,3 +129,21 @@ h6 {
 	transition: 1s linear;
 }
 
+.show-descr{
+	opacity: 1 !important;
+	transition: 1s linear;
+}
+
+.hide-descr{
+	opacity: 0 !important;
+	transition: 1s ease;
+	transform: translateX(-20rem);
+}
+
+.add-slide-bg-opacity{
+	opacity: 0 !important;
+}
+
+.remove-slide-bg-opacity{
+	opacity: 1 !important;
+}

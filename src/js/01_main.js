@@ -2,10 +2,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     
     const   switchersClickBlocker = document.querySelector('.slide__switch-menu_click-blocker'),
-            switchers = document.querySelectorAll('.slide__service-logo_wrapper');
+            switchers = document.querySelectorAll('.slide__service-logo_wrapper'),
+            // slideBg = document.querySelector('.slide__wrapper '),
+            slideBgTransitions = document.querySelectorAll('.slide__wrapper-bg-transition');
 
-
-    // console.log(switchersClickBlocker);
+    // console.log(slideBgTransitions[0]);
 
     const slidersDB = {
         pics: {
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         },
         descr: {
             wrapperClass: '.slide__descr_wrapper',
-            elemClasses: ['slide__descr', 'slide__descr-'],
+            elemClasses: ['slide__descr', 'slide__descr-', 'add-opacity'],
             content: {
                 1: 'Регистрация на проекте более не производится. А если вам интересен wapclick и всё, что с ним связано - ждём вас в Juddy! А за трафиком - заходите в Buymedia!',
 
@@ -99,9 +100,9 @@ function createSlide(slideClasses, numberOfSlide, slideContent) {
             setTimeout(removePrevSlide, slidesWrapperTransitionTime*1000);
     }
 
-// ==========ФУНКЦИЯ СМЕНЫ ЗАГОЛОВКОВ СЕРВИСОВ==========    
+// ==========ФУНКЦИЯ СМЕНЫ ТЕКСТА ДЛЯ КАЖДОГО ИЗ СЕРВИСОВ==========    
  
-    function changeSlideTitle (number, slidesWrapperClass, slideClasses, slideContent, ) {
+    function changeSlideText (number, slidesWrapperClass, slideClasses, slideContent, translateClass, showClass, hideClass) {
 
         const slidersWrapper = document.querySelector(slidesWrapperClass),
               slideItem = createSlide(slideClasses, number, slideContent);
@@ -113,14 +114,14 @@ function createSlide(slideClasses, numberOfSlide, slideContent) {
             slideItem = Array(...slideItem);
             slideItem.shift()
             for(const title of slideItem){
-                    title.classList.remove('show-title');
-                    title.classList.add('hide-title');
+                    title.classList.remove(showClass);
+                    title.classList.add(hideClass);
                     setTimeout(()=>{title.remove()}, 2000)
             }
         }
         setTimeout(()=>{
-            slideItem.classList.remove('translate-new-title')
-            slideItem.classList.add('show-title')
+            if(translateClass){slideItem.classList.remove(translateClass)}
+            slideItem.classList.add(showClass)
         }, 1500)
         removePrevSlide();
 
@@ -153,18 +154,42 @@ function createSlide(slideClasses, numberOfSlide, slideContent) {
 
     }
 
-// ==========ФУНКЦИЯ СМЕНЫ ОПИСАНИЯ СЕРВИСА==========
+    // ==========ФУНКЦИЯ СМЕНЫ ФОНА СЕРВИСА==========
 
-function changeSlideDescr () {
-    
-}
+    const slideBackgroundTransition = document.createElement('div');
+
+    slideBackgroundTransition.classList.add('slide__wrapper-bg-transition', 'add-slide-bg-opacity');
+
+    function changeSlideBg (bgArr, slideBg, i, min, max){
+
+        if(min<i){
+            bgArr[min].classList.add('add-slide-bg-opacity');
+            min = min+1;
+        }
+        if(i<max){
+            bgArr[max].classList.add('add-slide-bg-opacity');
+            max = max-1;
+        }
+
+        if(min==i&&max===i){
+            slideBg.classList.remove('add-slide-bg-opacity');
+            return;
+        }
+        changeSlideBg (bgArr, slideBg, i, min, max)
+    }
 
     switchers.forEach((switcher) => {
         switcher.addEventListener('click',function(){
             const slideNumber = +this.getAttribute('data-number');
             changeSlidePic(slideNumber, slidersDB.pics.wrapperClass, slidersDB.pics.elemClasses, slidersDB.pics.content, '-', 2);
-            changeSlideTitle(slideNumber, slidersDB.titles.wrapperClass, slidersDB.titles.elemClasses, slidersDB.titles.content);
+            changeSlideText(slideNumber, slidersDB.titles.wrapperClass, slidersDB.titles.elemClasses, slidersDB.titles.content, 'translate-new-title', 'show-title', 'hide-title');
+            changeSlideText (slideNumber, slidersDB.descr.wrapperClass, slidersDB.descr.elemClasses, slidersDB.descr.content, 0, 'show-descr', 'hide-descr');
             changeSlideLogo(slideNumber, slidersDB.logos.wrapperClass, slidersDB.logos.elemClasses);
+            slideBgTransitions.forEach((slideBg, j) => {
+                if(slideNumber===j+1) {
+                    changeSlideBg (slideBgTransitions, slideBg, j, 0, slideBgTransitions.length-1)
+                }
+            });
         });
     });
 
