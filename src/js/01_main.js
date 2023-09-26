@@ -42,6 +42,21 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
                 5: 'Проект PushAds.biz работает в приватном режиме. Регистрация новых пользователей временно приостановлена.'
             }
+        },
+        links: {
+            wrapperClass: '.slide__switch-menu_wrap',
+            elemClasses: ['slide__button'],
+            href: {
+                1: '#',
+                2: 'https://juddy.biz/',
+                3: 'https://buymedia.biz/',
+                4: 'https://wmplayer.biz/',
+                5: 'https://pushads.biz/',
+            }
+        },
+        planet: {
+            wrapperClass: '.slide__planet-wrapper',
+            elemClasses: ['slide__bg-planet']
         }
     };
 
@@ -58,7 +73,29 @@ function createSlide(slideClasses, numberOfSlide, slideContent) {
             return slide;
 }
 
+//===========ФУНКЦИЯ ДЛЯ УДАЛЕНИЯ ЭЛЕМЕНТА ПРЕДЫДУЩЕГО СЛАЙДА==========
+
+function removePrevSlideWithTimeout(slideClasses, popOrShift, showClass, hideClass, timeOut){
+    let slideItem = document.querySelectorAll(`.${slideClasses[0]}`);
+            slideItem = Array(...slideItem);
+            switch (popOrShift){
+                case 'pop':
+                    slideItem.pop();
+                    break;
+                case 'shift':
+                    slideItem.shift();
+                    break;
+                default:
+                    console.log('Set pop or shift method in function')
+            }
+            for(const item of slideItem){
+                    item.classList.remove(showClass);
+                    item.classList.add(hideClass);
+                    setTimeout(()=>{item.remove()}, timeOut)
+            }
+}
 // ==========ФУНКЦИЯ СМЕНЫ КАРТИНОК==========
+
     function changeSlidePic(number, slidesWrapperClass, slideClasses, slideContent, horizontalDirection, slidesWrapperTransitionTime) {
         const slidersWrapper = document.querySelector(slidesWrapperClass),
               slidersWrapperGap = +window.getComputedStyle(slidersWrapper).gap.slice(0, window.getComputedStyle(slidersWrapper).gap.length - 2);
@@ -107,23 +144,13 @@ function createSlide(slideClasses, numberOfSlide, slideContent) {
         const slidersWrapper = document.querySelector(slidesWrapperClass),
               slideItem = createSlide(slideClasses, number, slideContent);
 
-        slidersWrapper.prepend(slideItem)
+        slidersWrapper.prepend(slideItem);
 
-        function removePrevSlide () {
-            let slideItem = document.querySelectorAll(`.${slideClasses[0]}`);
-            slideItem = Array(...slideItem);
-            slideItem.shift()
-            for(const title of slideItem){
-                    title.classList.remove(showClass);
-                    title.classList.add(hideClass);
-                    setTimeout(()=>{title.remove()}, 2000)
-            }
-        }
         setTimeout(()=>{
             if(translateClass){slideItem.classList.remove(translateClass)}
             slideItem.classList.add(showClass)
         }, 1500)
-        removePrevSlide();
+        removePrevSlideWithTimeout(slideClasses, 'shift', showClass, hideClass, 2000)
 
     }
 
@@ -139,18 +166,7 @@ function createSlide(slideClasses, numberOfSlide, slideContent) {
 
         setTimeout(()=>{slidesItem.classList.add('show-logo')}, 1000)
 
-        function removePrevSlide () {
-            let slideItem = document.querySelectorAll(`.${slideClasses[0]}`);
-            slideItem = Array(...slideItem);
-            slideItem.pop()
-            for(const logo of slideItem){
-                    logo.classList.remove('show-logo');
-                    logo.classList.add('hide-logo');
-                    setTimeout(()=>{logo.remove()}, 1000)
-            }
-        }
-
-        removePrevSlide ();
+        removePrevSlideWithTimeout(slideClasses, 'pop', 'show-logo', 'hide-logo', 1000)
 
     }
 
@@ -178,18 +194,112 @@ function createSlide(slideClasses, numberOfSlide, slideContent) {
         changeSlideBg (bgArr, slideBg, i, min, max)
     }
 
+    //===========ФУНКЦИЯ СМЕНЫ КНОПОК С ССЫЛКАМИ НА СЕРВИСЫ==========
+
+    function changeSlideBtn (number, slidesWrapperClass, slideClasses, slideHref, showClass, hideClass){
+        
+        const slidesWrapper = document.querySelector(slidesWrapperClass),
+            slidesBtn = document.createElement('a');
+
+        slidesBtn.innerHTML = '<button>На сайт проекта</button>';
+        slideClasses.forEach(btnClass => slidesBtn.classList.add(btnClass));
+        slidesBtn.setAttribute('href', slideHref[number]);
+
+        slidesWrapper.append(slidesBtn);
+
+        if(number===1){
+            const btns = slidesWrapper.querySelectorAll('a');
+
+            btns.forEach(btn => {
+                btn.classList.add(hideClass);
+                setTimeout(()=>{btn.remove()}, 700)
+            })
+        }
+
+        setTimeout(()=>{slidesBtn.classList.add('show-btn')}, 1000)
+
+        removePrevSlideWithTimeout(slideClasses, 'pop', showClass, hideClass, 700)
+
+    }
+
+    //===========ФУНКЦИЯ УПРАВЛЕНИЯ ПОЗИЦИЕЙ ПЛАНЕТЫ==========
+
+    let clickCounter = 0;
+    
+    function setPlanetPosition (wrapClass, planetClasses) {
+
+        clickCounter = clickCounter + 1;
+
+        const planetWrap = document.querySelector(wrapClass),
+              planets = planetWrap.querySelectorAll(`.${planetClasses[0]}`);
+
+            switch (clickCounter) {
+                case 1:
+                    planetWrap.classList.add('planet-wrapper-position-1');
+                    break;
+                case 2:
+                    planetWrap.classList.remove('planet-wrapper-position-1');
+                    planetWrap.classList.add('planet-wrapper-position-2');
+                    planets.forEach(planet => planet.classList.add('planet-position-2'));
+                    setTimeout(()=>{
+                        planetWrap.classList.remove('planet-wrapper-position-2');
+                        planets.forEach(planet => planet.classList.remove('planet-position-2'));
+                        clickCounter = 0;
+                    }, 1800);
+                    break;
+                default:
+                    clickCounter = 0;
+            }
+    }
+
+    //===========ФУНКЦИЯ ОТОБРАЖЕНИЯ ИНДИКАТОРА АКТИВНОГО СЛАЙДА==========
+
+    function makeActiveElem (min, max, current, elem, activeClass, parentArr) {
+        
+        if(min<current){
+            parentArr[min].classList.remove(activeClass);
+            min = min+1;
+        }
+        if(current<max){
+            parentArr[max].classList.remove(activeClass);
+            max = max-1;
+        }
+        if(current===min&&current===max){
+            elem.classList.add(activeClass);
+            return;
+        }
+
+        makeActiveElem (min, max, current, elem, activeClass, parentArr);
+    }
+
+    //===========ФУНКЦИЯ ДОБАВЛЯЮЩАЯ БЛОК ОТКЛЮЧАЮЩИЙ КЛИКИ========== 
+
+    function cancelClicks (elem) {
+        elem.classList.remove('hide');
+        setTimeout(()=>{elem.classList.add('hide');}, 2000)
+    }
+
+
+
+    let slideIndex = 1;
+
     switchers.forEach((switcher) => {
         switcher.addEventListener('click',function(){
             const slideNumber = +this.getAttribute('data-number');
-            changeSlidePic(slideNumber, slidersDB.pics.wrapperClass, slidersDB.pics.elemClasses, slidersDB.pics.content, '-', 2);
-            changeSlideText(slideNumber, slidersDB.titles.wrapperClass, slidersDB.titles.elemClasses, slidersDB.titles.content, 'translate-new-title', 'show-title', 'hide-title');
-            changeSlideText (slideNumber, slidersDB.descr.wrapperClass, slidersDB.descr.elemClasses, slidersDB.descr.content, 0, 'show-descr', 'hide-descr');
-            changeSlideLogo(slideNumber, slidersDB.logos.wrapperClass, slidersDB.logos.elemClasses);
-            slideBgTransitions.forEach((slideBg, j) => {
-                if(slideNumber===j+1) {
-                    changeSlideBg (slideBgTransitions, slideBg, j, 0, slideBgTransitions.length-1)
-                }
-            });
+
+            if(slideNumber!=slideIndex){
+                makeActiveElem (0, switchers.length-1, slideNumber-1, switcher, 'slide__service-logo_wrapper-active', switchers);
+                cancelClicks(switchersClickBlocker);
+                changeSlidePic(slideNumber, slidersDB.pics.wrapperClass, slidersDB.pics.elemClasses, slidersDB.pics.content, '-', 2);
+                changeSlideText(slideNumber, slidersDB.titles.wrapperClass, slidersDB.titles.elemClasses, slidersDB.titles.content, 'translate-new-title', 'show-title', 'hide-title');
+                changeSlideText (slideNumber, slidersDB.descr.wrapperClass, slidersDB.descr.elemClasses, slidersDB.descr.content, 0, 'show-descr', 'hide-descr');
+                changeSlideLogo(slideNumber, slidersDB.logos.wrapperClass, slidersDB.logos.elemClasses);
+                slideBgTransitions.forEach((slideBg, j) =>  {if(slideNumber===j+1){changeSlideBg (slideBgTransitions, slideBg, j, 0, slideBgTransitions.length-1)}});
+                changeSlideBtn (slideNumber, slidersDB.links.wrapperClass, slidersDB.links.elemClasses, slidersDB.links.href, 'show-btn', 'hide-btn');
+                setPlanetPosition (slidersDB.planet.wrapperClass, slidersDB.planet.elemClasses);
+
+                slideIndex = slideNumber;
+            }
         });
     });
 
