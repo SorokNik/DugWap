@@ -18,7 +18,7 @@
                 width: 22rem;
                 color: #898989;
                 font-size: 1.1rem;
-                
+                text-align: right;
             }
             .slide__head-logo_wrap{
                 margin-left: 0;
@@ -39,211 +39,327 @@
             }
         }
         .slide__wrapper{
-    //         width: 100.2rem;
-    //         height: 75%;
-    //         margin-left: 47.7rem;
-    //         padding-top: 3vh;
-    //         transform: skew(-20deg);
-    //         position: relative;
-    //         transition: all 2s linear;
-    //         background-color: #ED672E;
-    //         .slide__wrapper-bg-transition{
-    //             position: absolute;
-    //             top: 0;
-    //             bottom: 0;
-    //             left: 0;
-    //             right: 0;
-    //             transition: 1s linear;
-    //         }
-    //         .slide__descr_wrapper{
-    //             transform: skew(20deg);
-    //         }
-    //         .slide__descr_wrapper{
-    //             width: 47.4rem;
-    //             margin-left: 40rem;
-    //             position: relative;
-    //             .slide__descr{
-    //                 position: absolute;
-    //                 left: 0;
-    //                 top: 0;
-    //                 font-size: 2.4rem;
-    //                 font-weight: 400;
-    //                 line-height: 115%;
-    //             }
-    //         }
-        }
-    //     .slide__wrapper-1{
-    //         background: linear-gradient(72deg, #ED672E 18.57%, #58002A 115.25%);
-    //     }
-    //     .slide__wrapper-2{
-    //         background: linear-gradient(72deg, #ED672E 18.57%, #65007E 115.25%);
-    //     }
-    //     .slide__wrapper-3{
-    //         background: linear-gradient(72deg, #ED672E 18.57%, #008088 115.25%);
-    //     }
-    //     .slide__wrapper-4{
-    //         background: linear-gradient(72deg, #ED672E 18.57%, #C7974F 115.25%);
-    //     }
-    //     .slide__wrapper-5{
-    //         background: linear-gradient(72deg, #ED672E 18.57%, #002958 115.25%);
-    //     }
-        
-    //     .slide__switch-menu_wrap{
-    //         width: 100vw;
-    //         position: absolute;
-    //         left: 50%;
-    //         transform: translateX(-50%);
-    //         top: 50.3vh;
-    //         min-height: 32.9vh;
-    //         padding-bottom: 4.9vh;
-    //         background: linear-gradient(180deg, #000 0%, #231515 100%);
-    //         box-shadow: 0px 18px 32px 0px rgba(0, 0, 0, 0.36);
-    //         z-index: 1;
-    //         .slide__switch-menu_border{
-    //             width: 100%;
-    //             height: 4.2vh;   
-    //             background-size: cover;
-    //         }
-    //         .slide__pic_wrapper{
-    //             width: auto;
-    //             height: 81vh;
-    //             position: absolute;
-    //             left: 11rem;
-    //             top: -34vh;
-    //             z-index: 1;
-    //             gap: 102rem;
-    //             .slide__pic{
-    //                 width: 77.7rem;
-    //                 height: 100%;
-    //                 background-position: 100% 100%;
-    //                 background-size: contain;
-    //                 background-repeat: no-repeat;
-    //             }
-    //             .slide__pic-1{
-    //                 background-image: url(../img/slide-pic/slide-pic-1.webp);
-    //             }
-    //             .slide__pic-2{
-    //                 background-image: url(../img/slide-pic/slide-pic-2.webp);
-    //             }
-    //             .slide__pic-3{
-    //                 background-image: url(../img/slide-pic/slide-pic-3.webp);
-    //             }
-    //             .slide__pic-4{
-    //                 background-image: url(../img/slide-pic/slide-pic-4.webp);
-    //             }
-    //             .slide__pic-5{
-    //                 background-image: url(../img/slide-pic/slide-pic-5.webp);
-    //             }
-    //         }
-    //         .slide__switch-menu{
-    //             margin-left: 88rem;
-    //             width: 47rem;
-    //             margin-top: 5.65vh;
-    //             display: flex;
-    //             flex-wrap: wrap;
-    //             justify-content: center;
-    //             flex-wrap: wrap;
-    //             gap: 1.85rem 9.6rem;
-    //             position: relative;
-    //             .slide__switch-menu_click-blocker{
-    //                 position: absolute;
-    //                 top: 0;
-    //                 left: 0;
-    //                 right: 0;
-    //                 bottom: 0;
-    //                 z-index: 999;
-    //             }
-    //             .slide__service-logo_wrapper{
-    //                 display: flex;
-    //                 flex-direction: column;
-    //                 align-items: center;
-    //                 gap: 0.46vh;
-    //                 .slide__service-logo{
-    //                     width: 6.6rem;
-    //                     height: 6.6rem;
-    //                     fill: #fff;
-    //                     transition: .25s ease;
-    //                 }
-    //                 .slide__service-name{
-    //                     font-size: 1.4rem;
-    //                     font-weight: 600;
-    //                     line-height: 115%;
-    //                     text-transform: uppercase;
-    //                     transition: .25s ease;
-    //                 }
-    //             }
-    //             .slide__service-logo_wrapper:hover{
-    //                 cursor: pointer;
-    //                 .slide__service-logo{
-    //                     fill: #ED2E2E;
-    //                     filter: drop-shadow(0px 0px 13px #ED2E2E);
-    //                 }
-    //                 .slide__service-name{
-    //                     color: #ED2E2E;
-    //                     text-shadow: 0px 0px 13px #ED2E2E;
-    //                 }
-    //             }            
-    //             .slide__service-logo_wrapper-active{
-    //                 cursor: pointer;
-    //                 .slide__service-logo{
-    //                     fill: #ED2E2E;
-    //                     filter: drop-shadow(0px 0px 13px #ED2E2E);
-    //                 }
-    //                 .slide__service-name{
-    //                     color: #ED2E2E;
-    //                     text-shadow: 0px 0px 13px #ED2E2E;
-    //                 }
-    //             }       
-    //         }
-    //         .slide__button{
-    //             display: block;
-    //             width: 27rem;
-    //             height: 4.8rem;
-    //             background: #fff;
-    //             box-shadow: (5px 16px 15px rgba(0, 0, 0, 0.25), 0px 0px 17px rgba(255, 255, 255, 0.60));
-    //             transform: skew(-20deg);
-    //             text-decoration: none;
-    //             position: absolute;
-    //             top: 92%;
-    //             left: 68rem;
-    //             z-index: 2;
-    //             opacity: 0;
-    //             button{
-    //                 width: 100%;
-    //                 height: 100%;
-    //                 background: transparent;
-    //                 border: none;
-    //                 transform: skew(20deg);
-    //                 display: flex;
-    //                 justify-content: center;
-    //                 align-items: center;
-    //                 color: #000;
-    //                 font-size: 1.6rem;
-    //                 font-weight: 400;
-    //                 line-height: 115%;
-    //                 text-decoration: none;
-    //                 position: relative;
-    //                 z-index: 9999;
-    //                 cursor: pointer;
-    //             }
-    //         }
+            width: 80rem;
+            height: 65%;
+            margin-left: 10.8rem;
+            .slide__descr_wrapper{
+                margin-left: 25rem;
+                .slide__descr{
+                    font-size: 2rem;
+                }
+            }
+        }        
+        .slide__switch-menu_wrap{
+            top: 59.4vh;
+            min-height: 32vh;
+            padding-bottom: 5.9vh;
+            .slide__switch-menu_border{
+                height: 4.7vh;   
+            }
+            .slide__pic_wrapper{
+                height: 92.7vh;
+                left: -13rem;
+                top: -46vh;
+                gap: 52rem;
+                .slide__pic{
+                    width: 61.2rem;
+                }
+                .slide__pic-1{
+                    background-position: 0rem 8rem;
+                }
+                .slide__pic-2{
+                    background-position: -0.5rem 3rem;
+                }
+                .slide__pic-3{
+                    background-position: 3rem 5rem;
+                    background-size: 84%;
+                }
+                .slide__pic-4{
+                    background-position: 3rem 7rem;
+                    background-size: 95%;
+                }
+                .slide__pic-5{
+                    background-position: 3rem 4rem;
+                    background-size: 87%;
+                }
+            }
+            .slide__switch-menu{
+                margin-left: 32rem;
+                width: 66rem;
+                margin-top: 7.65vh;
+                flex-wrap: nowrap;
+                gap: 7.5rem;
+                .slide__service-logo_wrapper{
+                    .slide__service-logo{
+                        width: 6.9rem;
+                        height: 6.9rem;
+                    }
+                }      
+            }
+            .slide__button{
+                top: 90%;
+                left: 36rem;
+            }
             
-    //     }
-    //     .slide__planet-wrapper{
-    //         position: absolute;
-    //         z-index: 0;
-    //         left: 81rem;
-    //         top: 97vh;
-    //         width: 124rem;
-    //         transform: rotate(-90deg);
-    //         .slide__bg-planet{
-    //             @include bg;
-    //             background-image: url(../img/slide/planet.webp);
-    //             width: 46.5rem;
-    //             height: 43.15vh;
-    //             transform: rotate(90deg);
-    //         }
-    //     }
+        }
+        .slide__planet-wrapper{
+            left: 20rem;
+            top: 141vh;
+            .slide__bg-planet{
+                width: 28.8rem;
+                height: 39.45vh;
+            }
+        }
+        .slide__planet-wrapper.planet-wrapper-position-1{
+            transform:  rotate(-90deg) translateY(-42rem) !important;
+        }
+    }
+    
+}
+
+@media (max-width: 1199px) and (orientation: portrait){
+    html {
+        font-size: 1.37vw;
+    }
+
+    .slide{
+        .slide__head{
+            width: 57.7rem;
+            height: 20%;        
+            margin-left: 7.7rem;
+            .slide__head_descr{
+                width: 14rem;
+            }
+            .slide__head-logo_wrap{
+                width: 10rem;
+                height: 10rem;
+                .slide__head-logo{
+                    width: 10rem;
+                    height: 10rem;
+                }
+            }
+            .slide__head-title_wrap{
+        //         margin-left: 6.1rem;
+        //         gap: 10rem;
+        //         max-width: 48%;
+        //         transform: skew(-20deg);
+        //         position: relative;
+        //         height: 7rem;
+        //         .slide__head-title{
+        //             position: absolute;
+        //             font-size: 6.4rem;
+        //             font-weight: 100;
+        //         }
+            }
+        }
+        // .slide__wrapper{
+        //     width: 100.2rem;
+        //     height: 75%;
+        //     margin-left: 47.7rem;
+        //     padding-top: 3vh;
+        //     transform: skew(-20deg);
+        //     position: relative;
+        //     transition: all 2s linear;
+        //     background-color: #ED672E;
+        //     .slide__wrapper-bg-transition{
+        //         position: absolute;
+        //         top: 0;
+        //         bottom: 0;
+        //         left: 0;
+        //         right: 0;
+        //         transition: 1s linear;
+        //     }
+        //     .slide__descr_wrapper{
+        //         transform: skew(20deg);
+        //     }
+        //     .slide__descr_wrapper{
+        //         width: 47.4rem;
+        //         margin-left: 40rem;
+        //         position: relative;
+        //         .slide__descr{
+        //             position: absolute;
+        //             left: 0;
+        //             top: 0;
+        //             font-size: 2.4rem;
+        //             font-weight: 400;
+        //             line-height: 115%;
+        //         }
+        //     }
+        // }
+        // .slide__wrapper-1{
+        //     background: linear-gradient(72deg, #ED672E 18.57%, #58002A 115.25%);
+        // }
+        // .slide__wrapper-2{
+        //     background: linear-gradient(72deg, #ED672E 18.57%, #65007E 115.25%);
+        // }
+        // .slide__wrapper-3{
+        //     background: linear-gradient(72deg, #ED672E 18.57%, #008088 115.25%);
+        // }
+        // .slide__wrapper-4{
+        //     background: linear-gradient(72deg, #ED672E 18.57%, #C7974F 115.25%);
+        // }
+        // .slide__wrapper-5{
+        //     background: linear-gradient(72deg, #ED672E 18.57%, #002958 115.25%);
+        // }
+        
+        // .slide__switch-menu_wrap{
+        //     width: 100vw;
+        //     position: absolute;
+        //     left: 50%;
+        //     transform: translateX(-50%);
+        //     top: 50.3vh;
+        //     min-height: 32.9vh;
+        //     padding-bottom: 4.9vh;
+        //     background: linear-gradient(180deg, #000 0%, #231515 100%);
+        //     box-shadow: 0px 18px 32px 0px rgba(0, 0, 0, 0.36);
+        //     z-index: 1;
+        //     .slide__switch-menu_border{
+        //         width: 100%;
+        //         height: 4.2vh;   
+        //         background-size: cover;
+        //     }
+        //     .slide__pic_wrapper{
+        //         width: auto;
+        //         height: 81vh;
+        //         position: absolute;
+        //         left: 11rem;
+        //         top: -34vh;
+        //         z-index: 1;
+        //         gap: 102rem;
+        //         .slide__pic{
+        //             width: 77.7rem;
+        //             height: 100%;
+        //             background-position: 100% 100%;
+        //             background-size: contain;
+        //             background-repeat: no-repeat;
+        //         }
+        //         .slide__pic-1{
+        //             background-image: url(../img/slide-pic/slide-pic-1.webp);
+        //         }
+        //         .slide__pic-2{
+        //             background-image: url(../img/slide-pic/slide-pic-2.webp);
+        //         }
+        //         .slide__pic-3{
+        //             background-image: url(../img/slide-pic/slide-pic-3.webp);
+        //         }
+        //         .slide__pic-4{
+        //             background-image: url(../img/slide-pic/slide-pic-4.webp);
+        //         }
+        //         .slide__pic-5{
+        //             background-image: url(../img/slide-pic/slide-pic-5.webp);
+        //         }
+        //     }
+        //     .slide__switch-menu{
+        //         margin-left: 88rem;
+        //         width: 47rem;
+        //         margin-top: 5.65vh;
+        //         display: flex;
+        //         flex-wrap: wrap;
+        //         justify-content: center;
+        //         flex-wrap: wrap;
+        //         gap: 1.85rem 9.6rem;
+        //         position: relative;
+        //         .slide__switch-menu_click-blocker{
+        //             position: absolute;
+        //             top: 0;
+        //             left: 0;
+        //             right: 0;
+        //             bottom: 0;
+        //             z-index: 999;
+        //         }
+        //         .slide__service-logo_wrapper{
+        //             display: flex;
+        //             flex-direction: column;
+        //             align-items: center;
+        //             gap: 0.46vh;
+        //             .slide__service-logo{
+        //                 width: 6.6rem;
+        //                 height: 6.6rem;
+        //                 fill: #fff;
+        //                 transition: .25s ease;
+        //             }
+        //             .slide__service-name{
+        //                 font-size: 1.4rem;
+        //                 font-weight: 600;
+        //                 line-height: 115%;
+        //                 text-transform: uppercase;
+        //                 transition: .25s ease;
+        //             }
+        //         }
+        //         .slide__service-logo_wrapper:hover{
+        //             cursor: pointer;
+        //             .slide__service-logo{
+        //                 fill: #ED2E2E;
+        //                 filter: drop-shadow(0px 0px 13px #ED2E2E);
+        //             }
+        //             .slide__service-name{
+        //                 color: #ED2E2E;
+        //                 font-weight: 900;
+        //                 text-shadow: 0px 0px 13px #ED2E2E;
+        //             }
+        //         }            
+        //         .slide__service-logo_wrapper-active{
+        //             cursor: pointer;
+        //             .slide__service-logo{
+        //                 fill: #ED2E2E;
+        //                 filter: drop-shadow(0px 0px 13px #ED2E2E);
+        //             }
+        //             .slide__service-name{
+        //                 font-weight: 900;
+        //                 color: #ED2E2E;
+        //                 text-shadow: 0px 0px 13px #ED2E2E;
+        //             }
+        //         }       
+        //     }
+        //     .slide__button{
+        //         display: block;
+        //         width: 27rem;
+        //         height: 4.8rem;
+        //         background: #fff;
+        //         box-shadow: (5px 16px 15px rgba(0, 0, 0, 0.25), 0px 0px 17px rgba(255, 255, 255, 0.60));
+        //         transform: skew(-20deg);
+        //         text-decoration: none;
+        //         position: absolute;
+        //         top: 92%;
+        //         left: 68rem;
+        //         z-index: 2;
+        //         opacity: 0;
+        //         button{
+        //             width: 100%;
+        //             height: 100%;
+        //             background: transparent;
+        //             border: none;
+        //             transform: skew(20deg);
+        //             display: flex;
+        //             justify-content: center;
+        //             align-items: center;
+        //             color: #000;
+        //             font-size: 1.6rem;
+        //             font-weight: 400;
+        //             line-height: 115%;
+        //             text-decoration: none;
+        //             position: relative;
+        //             z-index: 9999;
+        //             cursor: pointer;
+        //         }
+        //     }
+            
+        // }
+        // .slide__planet-wrapper{
+        //     position: absolute;
+        //     z-index: 0;
+        //     left: 81rem;
+        //     top: 97vh;
+        //     width: 124rem;
+        //     transform: rotate(-90deg);
+        //     .slide__bg-planet{
+        //         @include bg;
+        //         background-image: url(../img/slide/planet.webp);
+        //         width: 46.5rem;
+        //         height: 43.15vh;
+        //         transform: rotate(90deg);
+        //     }
+        // }
     }
     // .slide::before{
     //     content: '';
@@ -256,4 +372,5 @@
     //     z-index: -1;
     // }
     
+           
 }

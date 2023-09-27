@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const   switchersClickBlocker = document.querySelector('.slide__switch-menu_click-blocker'),
             switchers = document.querySelectorAll('.slide__service-logo_wrapper'),
             // slideBg = document.querySelector('.slide__wrapper '),
-            slideBgTransitions = document.querySelectorAll('.slide__wrapper-bg-transition');
+            slideBgTransitions = document.querySelectorAll('.slide__wrapper-bg-transition'),
+            switchersMenu = document.querySelector('.slide__switch-menu');
 
     // console.log(slideBgTransitions[0]);
 
@@ -117,7 +118,7 @@ function removePrevSlideWithTimeout(slideClasses, popOrShift, showClass, hideCla
             slidersWrapper.style.transform = `translateX(${horizontalDirection}${step}px)`;
             slideItem.style.transition = '1s linear';
 
-            if(slidersWrapper.getElements)
+            switchersMenu.classList.remove('z-99');
 
             function removeMiniPic () {
                 slideItem.classList.remove('mini-pic');
@@ -125,6 +126,7 @@ function removePrevSlideWithTimeout(slideClasses, popOrShift, showClass, hideCla
 
             function removePrevSlide () {
                 let slideItem = document.querySelectorAll(`.${slideClasses[0]}`);
+                switchersMenu.classList.add('z-99');
                 slideItem = Array(...slideItem);
                 horizontalDirection === '-' ? slideItem.pop() : slideItem.shift()
                 for(const pic of slideItem){
@@ -279,11 +281,11 @@ function removePrevSlideWithTimeout(slideClasses, popOrShift, showClass, hideCla
         setTimeout(()=>{elem.classList.add('hide');}, 2000)
     }
 
-
+    // ===========ФУНКЦИЯ ВЫЗЫВАЮЩАЯ ВСЕ ОСТАЛЬНЫЕ ФУНКЦИИ========== 
 
     let slideIndex = 1;
 
-    switchers.forEach((switcher) => {
+    function runSwitcher(switcher){
         switcher.addEventListener('click',function(){
             const slideNumber = +this.getAttribute('data-number');
 
@@ -301,7 +303,12 @@ function removePrevSlideWithTimeout(slideClasses, popOrShift, showClass, hideCla
                 slideIndex = slideNumber;
             }
         });
+    }
+
+
+    switchers.forEach((switcher) => {
+        runSwitcher(switcher);
     });
 
-
+    
 });
