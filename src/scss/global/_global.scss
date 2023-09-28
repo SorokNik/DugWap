@@ -92,6 +92,14 @@ h6 {
 	display: block !important;
 }
 
+
+
+.show-pic{
+	left: 11rem;
+}
+.hide-pic{
+	left: -100vw !important;
+}
 .mini-pic{
 	transform: perspective(100rem) translateZ(-50rem);
 }

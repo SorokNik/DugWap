@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
             slideBgTransitions = document.querySelectorAll('.slide__wrapper-bg-transition'),
             switchersMenu = document.querySelector('.slide__switch-menu');
 
-    // console.log(slideBgTransitions[0]);
 
     const slidersDB = {
         pics: {
