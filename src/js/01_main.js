@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     
     const   switchersClickBlocker = document.querySelector('.slide__switch-menu_click-blocker'),
             switchers = document.querySelectorAll('.slide__service-logo_wrapper'),
-            // slideBg = document.querySelector('.slide__wrapper '),
+            slide = document.querySelector('.slide'),
             slideBgTransitions = document.querySelectorAll('.slide__wrapper-bg-transition'),
             switchersMenu = document.querySelector('.slide__switch-menu');
 
@@ -218,7 +218,7 @@ function removePrevSlideWithTimeout(slideClasses, popOrShift, showClass, hideCla
             })
         }
 
-        setTimeout(()=>{slidesBtn.classList.add('show-btn')}, 1000)
+        setTimeout(()=>{slidesBtn.classList.add('show-btn', `show-btn-tablet-${number}`);}, 1000)
 
         removePrevSlideWithTimeout(slideClasses, 'pop', showClass, hideClass, 700)
 
@@ -281,11 +281,20 @@ function removePrevSlideWithTimeout(slideClasses, popOrShift, showClass, hideCla
         setTimeout(()=>{elem.classList.add('hide');}, 2000)
     }
 
-    // ===========ФУНКЦИЯ ВЫЗЫВАЮЩАЯ ВСЕ ОСТАЛЬНЫЕ ФУНКЦИИ========== 
+    // ===========ОТКЛЮЧАЕТ ВСЕ TRANSITION ЭФФЕКТЫ ПРИ ИЗМЕНЕНИИ РАЗМЕРА ОКНА========== 
+
+    window.addEventListener('resize', ()=> {
+        slide.classList.add('disable-transition');
+        if(slide.classList.contains('disable-transition')){
+            setTimeout(()=>{slide.classList.remove('disable-transition')}, 200)
+        }
+    });
+
+    // ===========ВЫЗОВ ФУНКЦИЙ========== 
 
     let slideIndex = 1;
 
-    function runSwitcher(switcher){
+    switchers.forEach((switcher) => {
         switcher.addEventListener('click',function(){
             const slideNumber = +this.getAttribute('data-number');
 
@@ -298,17 +307,11 @@ function removePrevSlideWithTimeout(slideClasses, popOrShift, showClass, hideCla
                 changeSlideLogo(slideNumber, slidersDB.logos.wrapperClass, slidersDB.logos.elemClasses);
                 slideBgTransitions.forEach((slideBg, j) =>  {if(slideNumber===j+1){changeSlideBg (slideBgTransitions, slideBg, j, 0, slideBgTransitions.length-1)}});
                 changeSlideBtn (slideNumber, slidersDB.links.wrapperClass, slidersDB.links.elemClasses, slidersDB.links.href, 'show-btn', 'hide-btn');
-                setPlanetPosition (slidersDB.planet.wrapperClass, slidersDB.planet.elemClasses);
+                if(window.innerWidth/window.innerHeight > 1){setPlanetPosition (slidersDB.planet.wrapperClass, slidersDB.planet.elemClasses)}
 
                 slideIndex = slideNumber;
             }
         });
-    }
-
-
-    switchers.forEach((switcher) => {
-        runSwitcher(switcher);
     });
 
-    
 });

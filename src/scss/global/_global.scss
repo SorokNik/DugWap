@@ -162,6 +162,56 @@ h6 {
 	transform:  skew(-20deg) translateX(-20rem) !important;
 }
 
+.show-btn-tablet-2,
+.show-btn-tablet-3,
+.show-btn-tablet-4,
+.show-btn-tablet-5{
+	left: 68rem !important;
+}
+
+@media (max-width: 1199px) and (orientation: landscape){
+	.show-btn-tablet-2{
+		left: 41rem !important;
+	}
+	
+	.show-btn-tablet-3{
+		left: 55.5rem !important;
+	}
+	
+	.show-btn-tablet-4{
+		left: 70.5rem !important;
+	}
+	
+	.show-btn-tablet-5{
+		left: 80.5rem !important;
+	}
+}
+
+@media (max-width: 1199px) and (min-width: 576px) and (orientation: portrait){
+	.show-btn-tablet-2,
+	.show-btn-tablet-3,
+	.show-btn-tablet-4,
+	.show-btn-tablet-5{
+		left: 41rem !important;
+	}
+}
+
+@media (max-width: 575px) and (orientation: portrait){
+	.show-btn-tablet-2,
+	.show-btn-tablet-3,
+	.show-btn-tablet-4,
+	.show-btn-tablet-5{
+		left: 50% !important;
+    	transform: skew(-20deg) translateX(-50%) !important;
+	}
+
+	.hide-btn{
+		opacity: 0 !important;
+		transition: .7s ease;
+		transform:  skew(-20deg) translateX(-80%) !important;
+	}
+}
+
 
 
 .planet-wrapper-position-1{
@@ -183,4 +233,8 @@ h6 {
 
 .z-99{
 	z-index: 99 !important;
+}
+
+.disable-transition * {
+	transition: none !important;
 }
