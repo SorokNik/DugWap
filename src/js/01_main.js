@@ -1,17 +1,17 @@
 document.addEventListener('DOMContentLoaded', ()=> {
 
     
-    const   switchersClickBlocker = document.querySelector('.slide__switch-menu_click-blocker'),
+    const   switchersWrapper = document.querySelector('.slide__switch-menu'),
             switchers = document.querySelectorAll('.slide__service-logo_wrapper'),
             slide = document.querySelector('.slide'),
             slideBgTransitions = document.querySelectorAll('.slide__wrapper-bg-transition'),
-            switchersMenu = document.querySelector('.slide__switch-menu');
+            switchersTransparentWrap = document.querySelector('.slide__switch-menu__transparent-wrap');
 
 
     const slidersDB = {
         pics: {
             wrapperClass: '.slide__pic_wrapper',
-            elemClasses: ['slide__pic', 'mini-pic', 'slide__pic-'],
+            elemClasses: ['slide__pic', 'slide__pic-'],
         },
         titles: {
             wrapperClass: '.slide__head-title_wrap',
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
                 2: 'Монетизация трафика с помощью 1-click, pin-submit, etc. После регистрации назови менеджеру тайное слово «Дайпять» и получи +5% к ребилльной ставке на целый месяц!',
 
-                3: 'Рекламная сеть с самыми популярными форматами: Preroll, In-page, PopUnder/ClickUnder. Мониторинг конкурентов и тонкие настройки кампании. По промокоду «BeInBuymedia» + 5% к первому пополнению!',
+                3: 'Рекламная сеть с лучшим 18+ трафиком: Preroll, In-page, ClickUnder. Широкий функционал. По промокоду «BMtop» + 5% к первому пополнению!',
 
                 4: 'Кастомный видеоплеер с широкой палитрой инструментов для настройки персонализации. Бонус - не требует знаний программирования.',
 
@@ -73,9 +73,15 @@ function createSlide(slideClasses, numberOfSlide, slideContent) {
             return slide;
 }
 
+//===========ПРОВЕРКА НА ТО, ЯВЛЯЕТСЯ ЛИ УСТРОЙСТВО ТЕЛЕФОНОМ/ПЛАНШЕТОМ==========
+
+function hasTouchDevice() {
+    return !!('ontouchstart' in window || navigator.maxTouchPoints);
+  }
+
 //===========ФУНКЦИЯ ДЛЯ УДАЛЕНИЯ ЭЛЕМЕНТА ПРЕДЫДУЩЕГО СЛАЙДА==========
 
-function removePrevSlideWithTimeout(slideClasses, popOrShift, showClass, hideClass, timeOut){
+function removePrevSlideWithTimeout(slideClasses, popOrShift, showClass, hideClass, timeOut, callback){
     let slideItem = document.querySelectorAll(`.${slideClasses[0]}`);
             slideItem = Array(...slideItem);
             switch (popOrShift){
@@ -91,51 +97,32 @@ function removePrevSlideWithTimeout(slideClasses, popOrShift, showClass, hideCla
             for(const item of slideItem){
                     item.classList.remove(showClass);
                     item.classList.add(hideClass);
-                    setTimeout(()=>{item.remove()}, timeOut)
+                    setTimeout(()=>{if(callback){callback()} item.remove()}, timeOut)
             }
 }
 // ==========ФУНКЦИЯ СМЕНЫ КАРТИНОК==========
 
-    function changeSlidePic(number, slidesWrapperClass, slideClasses, slideContent, horizontalDirection, slidesWrapperTransitionTime) {
-        const slidersWrapper = document.querySelector(slidesWrapperClass),
-              slidersWrapperGap = +window.getComputedStyle(slidersWrapper).gap.slice(0, window.getComputedStyle(slidersWrapper).gap.length - 2);
+    function changeSlidePic(number, slidesWrapperClass, slideClasses, showClass, hideClass) {
+        const slidersWrapper = document.querySelector(slidesWrapperClass);
 
             const prevSlideItems = slidersWrapper.querySelectorAll(`.${slideClasses[0]}`);
             prevSlideItems.forEach(item => {
-                item.removeAttribute('style');
                 item.classList.add('add-opacity')
             });
 
-            const slideItem = createSlide(slideClasses, number, slideContent);
+            const slideItem = createSlide(slideClasses, number, 0);
 
             slidersWrapper.append(slideItem)
-            
 
-            const step = slidersWrapperGap + slideItem.clientWidth;
+            switchersTransparentWrap.classList.remove('z-99');
 
-            slidersWrapper.style.transition = `${slidesWrapperTransitionTime}s ease`;
-            slidersWrapper.style.transform = `translateX(${horizontalDirection}${step}px)`;
-            slideItem.style.transition = '1s linear';
-
-            switchersMenu.classList.remove('z-99');
-
-            function removeMiniPic () {
-                slideItem.classList.remove('mini-pic');
+            function addZ99() {
+                switchersTransparentWrap.classList.add('z-99')
             }
 
-            function removePrevSlide () {
-                let slideItem = document.querySelectorAll(`.${slideClasses[0]}`);
-                switchersMenu.classList.add('z-99');
-                slideItem = Array(...slideItem);
-                horizontalDirection === '-' ? slideItem.pop() : slideItem.shift()
-                for(const pic of slideItem){
-                        pic.remove();
-                }
-                slidersWrapper.removeAttribute('style');
-            }
+            removePrevSlideWithTimeout(slideClasses, 'pop', showClass, hideClass, 2500, addZ99);
 
-            if(slideItem.classList.contains('mini-pic')){setTimeout(removeMiniPic, 400)}
-            setTimeout(removePrevSlide, slidesWrapperTransitionTime*1000);
+            setTimeout(()=>{slideItem.classList.add(showClass);}, 100)
     }
 
 // ==========ФУНКЦИЯ СМЕНЫ ТЕКСТА ДЛЯ КАЖДОГО ИЗ СЕРВИСОВ==========    
@@ -275,9 +262,9 @@ function removePrevSlideWithTimeout(slideClasses, popOrShift, showClass, hideCla
 
     //===========ФУНКЦИЯ ДОБАВЛЯЮЩАЯ БЛОК ОТКЛЮЧАЮЩИЙ КЛИКИ========== 
 
-    function cancelClicks (elem) {
-        elem.classList.remove('hide');
-        setTimeout(()=>{elem.classList.add('hide');}, 2000)
+    function cancelClicks (elem, timeOut) {
+        elem.classList.add('remove-pointer-events');
+        setTimeout(()=>{elem.classList.remove('remove-pointer-events');}, timeOut)
     }
 
     // ===========ОТКЛЮЧАЕТ ВСЕ TRANSITION ЭФФЕКТЫ ПРИ ИЗМЕНЕНИИ РАЗМЕРА ОКНА========== 
@@ -293,14 +280,24 @@ function removePrevSlideWithTimeout(slideClasses, popOrShift, showClass, hideCla
 
     let slideIndex = 1;
 
-    switchers.forEach((switcher) => {
+    if(!(hasTouchDevice())){
+        switchers.forEach(switcher => {
+            switcher.classList.add('hover');
+        })
+    };
+    
+    switchers.forEach(switcher => {
         switcher.addEventListener('click',function(){
             const slideNumber = +this.getAttribute('data-number');
 
             if(slideNumber!=slideIndex){
                 makeActiveElem (0, switchers.length-1, slideNumber-1, switcher, 'slide__service-logo_wrapper-active', switchers);
-                cancelClicks(switchersClickBlocker);
-                changeSlidePic(slideNumber, slidersDB.pics.wrapperClass, slidersDB.pics.elemClasses, slidersDB.pics.content, '-', 2);
+                cancelClicks(switchersWrapper, 2500);
+
+                // switcher.classList.remove('z-99');
+                // setTimeout(()=>{switcher.classList.add('z-99');}, 2500)
+
+                changeSlidePic(slideNumber, slidersDB.pics.wrapperClass, slidersDB.pics.elemClasses, 'show-pic', 'hide-pic');
                 changeSlideText(slideNumber, slidersDB.titles.wrapperClass, slidersDB.titles.elemClasses, slidersDB.titles.content, 'translate-new-title', 'show-title', 'hide-title');
                 changeSlideText (slideNumber, slidersDB.descr.wrapperClass, slidersDB.descr.elemClasses, slidersDB.descr.content, 0, 'show-descr', 'hide-descr');
                 changeSlideLogo(slideNumber, slidersDB.logos.wrapperClass, slidersDB.logos.elemClasses);

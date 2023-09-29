@@ -93,15 +93,15 @@ h6 {
 }
 
 
+// ==========УПРАВЛЕНИЕ ЭЛМЕНЕТАМИ СЛАЙДЕРА==========
 
 .show-pic{
-	left: 11rem;
+	transform: none !important;
+	transition: 2.5s ease !important;
 }
 .hide-pic{
-	left: -100vw !important;
-}
-.mini-pic{
-	transform: perspective(100rem) translateZ(-50rem);
+	transform: translateX(-100vw) !important;
+	transition: 2s ease !important;
 }
 
 .transition-2s{
@@ -243,6 +243,12 @@ h6 {
 	z-index: 99 !important;
 }
 
+// ================================================================================
+
 .disable-transition * {
 	transition: none !important;
+}
+
+.remove-pointer-events{
+	pointer-events: none;
 }

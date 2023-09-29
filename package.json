@@ -28,6 +28,7 @@
     "gulp-imagemin": "^7.1.0",
     "gulp-multi-dest": "^1.3.7",
     "gulp-plumber": "^1.2.1",
+    "gulp-rsync": "^0.1.0",
     "gulp-sass": "^5.1.0",
     "gulp-sass-bulk-importer": "^3.0.1",
     "gulp-sourcemaps": "^3.0.0",

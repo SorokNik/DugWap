@@ -94,7 +94,7 @@
                         width: 6.9rem;
                         height: 6.9rem;
                     }
-                }      
+                }    
             }
             .slide__button{
                 top: 92%;
@@ -229,9 +229,13 @@
             }
             .slide__switch-menu{
                 margin-left: 45rem;
-                width: 20rem;
+                width: 23rem;
                 margin-top: 3.65vh;
-                gap: 2rem 4rem;      
+                gap: 2rem 5rem;   
+                .slide__service-logo_wrapper{
+                    gap: 0.29rem;
+                    width: 8rem;
+                }
             }
             .slide__button{
                 top: 94%;
