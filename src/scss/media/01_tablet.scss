@@ -6,7 +6,7 @@
     .slide{
         .slide__head{
             width: 73.3rem;
-            height: 35%;
+            height: 23%;
             margin-left: 17.8rem;
             padding-left: 6rem;
             gap: 3.3rem;
@@ -40,17 +40,20 @@
         }
         .slide__wrapper{
             width: 80rem;
-            height: 65%;
+            height: 77%;
             margin-left: 10.8rem;
-            .slide__descr_wrapper{
-                margin-left: 25rem;
-                .slide__descr{
-                    font-size: 2rem;
+            .slide__descr-wrapper-center{
+                height: 40%;
+                .slide__descr_wrapper{
+                    margin-left: 27rem;
+                    .slide__descr{
+                        font-size: 2rem;
+                    }
                 }
             }
         }        
         .slide__switch-menu_wrap{
-            top: 59.4vh;
+            top: 53.4vh;
             min-height: 32vh;
             padding-bottom: 5.9vh;
             .slide__switch-menu_border{
@@ -61,8 +64,12 @@
                 left: -13rem;
                 top: -46vh;
                 gap: 52rem;
+                z-index: 0;
                 .slide__pic{
                     width: 61.2rem;
+                    transform: none;
+                    left: 0;
+                    opacity: 0;
                 }
                 .slide__pic-1{
                     background-position: 0rem 8rem;
@@ -88,8 +95,17 @@
                 width: 66rem;
                 margin-top: 7.65vh;
                 flex-wrap: nowrap;
-                gap: 7.5rem;
+                gap: 4rem;
                 .slide__service-logo_wrapper{
+                    width: 9.5rem;
+                    .slide__service-logo_container{
+                        .slide__service-logo-active.slide-logo-4-active{
+                            background-position-y: 0.05rem;
+                        }
+                        .slide__service-logo-active.slide-logo-5-active{
+                            background-position-y: 0.08rem;
+                        }
+                    }
                     .slide__service-logo{
                         width: 6.9rem;
                         height: 6.9rem;
@@ -129,7 +145,7 @@
             padding-top: 1.875rem;
         }
         .slide__switch-menu_wrap{
-            top: 37.13rem;
+            top: 33.13rem;
             min-height: 20rem;
             padding-bottom: 3.69rem;
             .slide__switch-menu_border{
@@ -138,6 +154,12 @@
             .slide__pic_wrapper{
                 height: 57.94rem;
                 top: -28.75rem;
+                z-index: 0;
+                .slide__pic{
+                    left: 0;
+                    transform: none;
+                    opacity: 0;
+                }
             }
             .slide__switch-menu{
                 margin-top: 4.78rem;
@@ -163,7 +185,7 @@
     .slide{
         .slide__head{
             width: 62.7rem;
-            height: 20%;        
+            height: 15%;        
             margin-left: 7.7rem;
             gap: 2rem;
             .slide__head_descr{
@@ -188,39 +210,49 @@
         }
         .slide__wrapper{
             width: 74.2rem;
-            height: 80%;
+            height: 85%;
             margin-left: -6.3rem;
-            .slide__descr_wrapper{
-                width: 33.4rem;
-                width: 32rem;
-                margin-left: 30rem;
-                .slide__descr{
-                font-size: 2.2rem;
+            .slide__descr-wrapper-center{
+                height: 33%;
+                .slide__descr_wrapper{
+                    width: 33.4rem;
+                    width: 32rem;
+                    margin-left: 35rem;
+                    .slide__descr{
+                    font-size: 2.2rem;
+                    }
                 }
             }
         }        
         .slide__switch-menu_wrap{
             min-height: 37vh;
+            top: 43.3vh;
             .slide__pic_wrapper{
                 left: -19rem;
-                top: -26vh;
+                top: -38vh;
                 gap: 26rem;
+                z-index: 0;
+                height: 84vh;
                 .slide__pic{
                     width: 66.7rem;
+                    left: 0;
+                    transform: none;
+                    opacity: 0;
                 }
                 .slide__pic-1{
-                    background-position: 0rem 9rem;
+                    background-position: -3rem 10rem;
+                    background-size: 104%;
                 }
                 .slide__pic-2{
                     background-position: 0rem 8rem;
                 }
                 .slide__pic-3{
-                    background-size: 86%;
-                    background-position: 5rem 13rem;
+                    background-size: 82%;
+                    background-position: 2rem 13rem;
                 }
                 .slide__pic-4{
-                    background-position: 3rem 14rem;
-                    background-size: 96%;
+                    background-position: 3rem 11rem;
+                    background-size: 100%;
                 }
                 .slide__pic-5{
                     background-size: 95%;
@@ -231,10 +263,24 @@
                 margin-left: 45rem;
                 width: 23rem;
                 margin-top: 3.65vh;
-                gap: 2rem 5rem;   
+                gap: 2rem 3rem;   
                 .slide__service-logo_wrapper{
                     gap: 0.29rem;
-                    width: 8rem;
+                    width: 9.5rem;
+                    .slide__service-logo_container{
+                        .slide__service-logo-active.slide-logo-1-active{
+                            background-position-y: 0.13rem;
+                        }
+                        .slide__service-logo-active.slide-logo-2-active{
+                            background-position-y: 0.35rem;
+                        }
+                        .slide__service-logo-active.slide-logo-4-active{
+                            background-position-y: 0.04rem;
+                        }
+                        .slide__service-logo-active.slide-logo-5-active{
+                            background-position-y: 0.04rem;
+                        }
+                    }
                 }
             }
             .slide__button{

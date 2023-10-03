@@ -4,8 +4,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const   switchersWrapper = document.querySelector('.slide__switch-menu'),
             switchers = document.querySelectorAll('.slide__service-logo_wrapper'),
             slide = document.querySelector('.slide'),
-            slideBgTransitions = document.querySelectorAll('.slide__wrapper-bg-transition'),
-            switchersTransparentWrap = document.querySelector('.slide__switch-menu__transparent-wrap');
+            slideBgTransitions = document.querySelectorAll('.slide__wrapper-bg-transition');
 
 
     const slidersDB = {
@@ -18,7 +17,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
             elemClasses: ['slide__head-title', 'slide__head_title-', 'add-opacity', 'translate-new-title'],
             content: {
                 1: 'DugWap',
-                2: 'Juddy.biz',
+                2: 'Juddy',
                 3: 'BuyMedia',
                 4: 'WMPlayer',
                 5: 'PushADS'
@@ -40,7 +39,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
                 4: 'Кастомный видеоплеер с широкой палитрой инструментов для настройки персонализации. Бонус - не требует знаний программирования.',
 
-                5: 'Проект PushAds.biz работает в приватном режиме. Регистрация новых пользователей временно приостановлена.'
+                5: 'Проект PushAds работает в приватном режиме. Регистрация новых пользователей временно приостановлена.'
             }
         },
         links: {
@@ -48,10 +47,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
             elemClasses: ['slide__button'],
             href: {
                 1: '#',
-                2: 'https://juddy.biz/',
-                3: 'https://buymedia.biz/',
-                4: 'https://wmplayer.biz/',
-                5: 'https://pushads.biz/',
+                2: 'https://juddy/',
+                3: 'https://buymedia/',
+                4: 'https://wmplayer/',
+                5: 'https://pushads/',
             }
         },
         planet: {
@@ -106,21 +105,12 @@ function removePrevSlideWithTimeout(slideClasses, popOrShift, showClass, hideCla
         const slidersWrapper = document.querySelector(slidesWrapperClass);
 
             const prevSlideItems = slidersWrapper.querySelectorAll(`.${slideClasses[0]}`);
-            prevSlideItems.forEach(item => {
-                item.classList.add('add-opacity')
-            });
 
             const slideItem = createSlide(slideClasses, number, 0);
 
             slidersWrapper.append(slideItem)
 
-            switchersTransparentWrap.classList.remove('z-99');
-
-            function addZ99() {
-                switchersTransparentWrap.classList.add('z-99')
-            }
-
-            removePrevSlideWithTimeout(slideClasses, 'pop', showClass, hideClass, 2500, addZ99);
+            removePrevSlideWithTimeout(slideClasses, 'pop', showClass, hideClass, 2500/* , addZ1 */);
 
             setTimeout(()=>{slideItem.classList.add(showClass);}, 100)
     }
@@ -276,6 +266,7 @@ function removePrevSlideWithTimeout(slideClasses, popOrShift, showClass, hideCla
         }
     });
 
+
     // ===========ВЫЗОВ ФУНКЦИЙ========== 
 
     let slideIndex = 1;
@@ -293,9 +284,6 @@ function removePrevSlideWithTimeout(slideClasses, popOrShift, showClass, hideCla
             if(slideNumber!=slideIndex){
                 makeActiveElem (0, switchers.length-1, slideNumber-1, switcher, 'slide__service-logo_wrapper-active', switchers);
                 cancelClicks(switchersWrapper, 2500);
-
-                // switcher.classList.remove('z-99');
-                // setTimeout(()=>{switcher.classList.add('z-99');}, 2500)
 
                 changeSlidePic(slideNumber, slidersDB.pics.wrapperClass, slidersDB.pics.elemClasses, 'show-pic', 'hide-pic');
                 changeSlideText(slideNumber, slidersDB.titles.wrapperClass, slidersDB.titles.elemClasses, slidersDB.titles.content, 'translate-new-title', 'show-title', 'hide-title');

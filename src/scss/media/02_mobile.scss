@@ -1,11 +1,12 @@
 @media (max-width: 575px) and (orientation: portrait) {
     html{
-        font-size: 1vh;
+        font-size: 2.67vw;
     }
 
     .slide{
+        overflow-y: scroll;
+        min-height: 99.4rem;
         .slide__head{
-            // width: 33.2rem;
             width: 88.5%;
             height: 27%;
             margin-left: 4.7rem;
@@ -46,16 +47,17 @@
             width: 100%;
             height: 73%;
             margin-left: 0;
-            padding-top: 4.9vh;
             clip-path: polygon(0% 40%,35% 0%,100% 0%,100% 100%,0% 100%);
             transform: none;
-            .slide__descr_wrapper{
-                transform: none;
-                width: 43%;
-                margin-left: 53%;
-                .slide__descr{
-                    font-size: 1.53rem;
-                    // font-size: 14px;
+            .slide__descr-wrapper-center{
+                height: 39%;
+                .slide__descr_wrapper{
+                    transform: none;
+                    width: 43%;
+                    margin-left: 55%;
+                    .slide__descr{
+                        font-size: 1.53rem;
+                    }
                 }
             }
         }
@@ -76,21 +78,21 @@
         }
         
         .slide__switch-menu_wrap{
-            top: 55.5vh;
-            min-height: 36.2vh;
-            padding-bottom: 5vh;
+            top: 55.2rem;
+            min-height: 36rem;
+            padding-bottom: 5rem;
             .slide__switch-menu_border{
                 width: 100%;
-                height: 3.5vh;   
-                background-size: cover;
+                height: 3.5rem;   
             }
             .slide__pic_wrapper{
                 height: 45.2rem;
                 left: -15rem;
-                top: -45.5vh;
+                top: -45.2rem;
                 gap: 52rem;
                 .slide__pic{
                     width: 43.6rem;
+                    transform: perspective(10rem) translateZ(-6rem) translateX(260rem);
                 }
                 .slide__pic-1{
                     background-position: 0 3rem;
@@ -115,7 +117,7 @@
                 width: 36.5rem;
                 margin: 0 auto;
                 margin-top: 5.7rem;
-                gap: 3.7rem 6rem;
+                gap: 3.7rem 3rem;
                 .slide__service-logo_wrapper{
                     gap: 1rem;
                     .slide__service-logo{

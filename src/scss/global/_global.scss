@@ -103,6 +103,40 @@ h6 {
 	transform: translateX(-100vw) !important;
 	transition: 2s ease !important;
 }
+@media (max-width: 1199px) and (orientation: landscape){
+	.show-pic{
+		transform: none !important;
+		transition: 1.5s ease !important;
+		opacity: 1 !important;
+	}
+	.hide-pic{
+		transform: none !important;
+		transition: 1.5s ease !important;
+		opacity: 0 !important;
+	}
+}
+@media (max-width: 1199px) and (orientation: portrait){
+	.show-pic{
+		transform: none !important;
+		transition: 1.5s ease !important;
+		opacity: 1 !important;
+	}
+	.hide-pic{
+		transform: none !important;
+		transition: 1.5s ease !important;
+		opacity: 0 !important;
+	}
+}
+@media (max-width: 575px) and (orientation: portrait){
+	.show-pic{
+		transform: none !important;
+		transition: 2.5s ease !important;
+	}
+	.hide-pic{
+		transform: translateX(-100vw) !important;
+		transition: 2s ease !important;
+	}
+}
 
 .transition-2s{
 	transition: 2s ease;
@@ -112,7 +146,7 @@ h6 {
 
 .hide-title{
 	transition: 1s ease;
-	transform: translateX(20rem);
+	transform: translate(20rem, -50%) !important;
 	opacity: 0;	
 }
 
@@ -140,13 +174,13 @@ h6 {
 
 .show-descr{
 	opacity: 1 !important;
-	transition: 1s linear;
+	transition: 1s ease !important;
 }
 
 .hide-descr{
 	opacity: 0 !important;
 	transition: 1s ease;
-	transform: translateX(-20rem);
+	transform: translate(-20rem, -50%) !important;
 }
 
 
@@ -239,8 +273,8 @@ h6 {
 	transition: 1s linear;
 }
 
-.z-99{
-	z-index: 99 !important;
+.z-1{
+	z-index: 1 !important;
 }
 
 // ================================================================================
