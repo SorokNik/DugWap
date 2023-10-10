@@ -47,10 +47,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
             elemClasses: ['slide__button'],
             href: {
                 1: '#',
-                2: 'https://juddy/',
-                3: 'https://buymedia/',
-                4: 'https://wmplayer/',
-                5: 'https://pushads/',
+                2: 'https://juddy.biz/',
+                3: 'https://buymedia.biz/',
+                4: 'https://wmplayer.biz/',
+                5: 'https://pushads.biz/',
             }
         },
         planet: {
